@@ -1,0 +1,226 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2026-06-04 13:43:36",
+    "containerVersion": {
+        "path": "accounts/6351839120/containers/254444744/versions/3",
+        "accountId": "6351839120",
+        "containerId": "254444744",
+        "containerVersionId": "3",
+        "name": "v1.3.0 - GTM Foundation",
+        "description": "- Built-in variables enabled\n- Custom HTML GCLID tag\n- Custom JS GCLID variable from localStorage",
+        "container": {
+            "path": "accounts/6351839120/containers/254444744",
+            "accountId": "6351839120",
+            "containerId": "254444744",
+            "name": "Lead Gen",
+            "publicId": "GTM-5K9QS6NZ",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1780514034792",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6351839120/containers/254444744/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-5K9QS6NZ"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "tagId": "5",
+                "name": "GA4 - Config",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "{{Const - GA4 Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1780514417886",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "tagId": "6",
+                "name": "Custom HTML - GCLID Capture",
+                "type": "html",
+                "priority": {
+                    "type": "INTEGER",
+                    "value": "10"
+                },
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  (function() {\n    var params = new URLSearchParams(window.location.search);\n    var gclid = params.get('gclid');\n    if (!gclid) return;\n\n    var existing = localStorage.getItem('_gclid');\n    if (gclid) gclid = gclid.split('/')[0].split('&')[0].trim();\n    if (existing) return; // first-touch: don't overwrite\n\n    localStorage.setItem('_gclid', JSON.stringify({\n      gclid: gclid,\n      timestamp: Date.now()\n    }));\n  })();\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1780580050994",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "variableId": "4",
+                "name": "Const - GA4 Measurement ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "G-VH9CHBBWR7"
+                    }
+                ],
+                "fingerprint": "1780514394252",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "variableId": "7",
+                "name": "JS - GCLID from localStorage",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  var NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;\n\n  try {\n    var raw = localStorage.getItem('_gclid');\n    if (!raw) return undefined;\n\n    var data = JSON.parse(raw);\n    if (!data.gclid || !data.timestamp) return undefined;\n    if (Date.now() - data.timestamp > NINETY_DAYS_MS) {\n      localStorage.removeItem('_gclid');\n      return undefined;\n    }\n\n    return data.gclid;\n  } catch (e) {\n    return undefined;\n  }\n}"
+                    }
+                ],
+                "fingerprint": "1780578216228",
+                "formatValue": {}
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_ELEMENT",
+                "name": "Click Element"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_CLASSES",
+                "name": "Click Classes"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_ID",
+                "name": "Click ID"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_TARGET",
+                "name": "Click Target"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_URL",
+                "name": "Click URL"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_TEXT",
+                "name": "Click Text"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "SCROLL_DEPTH_THRESHOLD",
+                "name": "Scroll Depth Threshold"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "SCROLL_DEPTH_UNITS",
+                "name": "Scroll Depth Units"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "SCROLL_DEPTH_DIRECTION",
+                "name": "Scroll Direction"
+            }
+        ],
+        "fingerprint": "1780580510594",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6351839120/containers/254444744/versions/3?apiLink=version"
+    }
+}
