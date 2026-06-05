@@ -1,0 +1,352 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2026-06-05 04:55:57",
+    "containerVersion": {
+        "path": "accounts/6351839120/containers/254444744/versions/5",
+        "accountId": "6351839120",
+        "containerId": "254444744",
+        "containerVersionId": "5",
+        "name": "v1.5.1 - Folder structure",
+        "description": "Structured tags and variables into folders",
+        "container": {
+            "path": "accounts/6351839120/containers/254444744",
+            "accountId": "6351839120",
+            "containerId": "254444744",
+            "name": "Lead Gen",
+            "publicId": "GTM-5K9QS6NZ",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1780514034792",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6351839120/containers/254444744/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-5K9QS6NZ"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "tagId": "5",
+                "name": "GA4 - Config",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "{{Const - GA4 Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1780635254783",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "parentFolderId": "12",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "tagId": "6",
+                "name": "Custom HTML - GCLID Capture",
+                "type": "html",
+                "priority": {
+                    "type": "INTEGER",
+                    "value": "10"
+                },
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n  (function() {\n    var params = new URLSearchParams(window.location.search);\n    var gclid = params.get('gclid');\n    if (!gclid) return;\n\n    var existing = localStorage.getItem('_gclid');\n    if (gclid) gclid = gclid.split('/')[0].split('&')[0].trim();\n    if (existing) return; // first-touch: don't overwrite\n\n    localStorage.setItem('_gclid', JSON.stringify({\n      gclid: gclid,\n      timestamp: Date.now()\n    }));\n  })();\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1780580050994",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "tagId": "8",
+                "name": "GAds - Conversion Linker",
+                "type": "gclidw",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableCrossDomain",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableUrlPassthrough",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableCookieOverrides",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1780635236764",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "parentFolderId": "11",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "tagId": "9",
+                "name": "GAds - Config",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "AW-18211178053"
+                    }
+                ],
+                "fingerprint": "1780635236821",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "parentFolderId": "11",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "tagId": "10",
+                "name": "GAds - Remarketing - All Pages",
+                "type": "sp",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableConversionLinker",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableDynamicRemarketing",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionId",
+                        "value": "18211178053"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "customParamsFormat",
+                        "value": "NONE"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "rdp",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1780635236820",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "parentFolderId": "11",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "variableId": "4",
+                "name": "Const - GA4 Measurement ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "G-VH9CHBBWR7"
+                    }
+                ],
+                "fingerprint": "1780635254783",
+                "parentFolderId": "12",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "variableId": "7",
+                "name": "JS - GCLID from localStorage",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  var NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;\n\n  try {\n    var raw = localStorage.getItem('_gclid');\n    if (!raw) return undefined;\n\n    var data = JSON.parse(raw);\n    if (!data.gclid || !data.timestamp) return undefined;\n    if (Date.now() - data.timestamp > NINETY_DAYS_MS) {\n      localStorage.removeItem('_gclid');\n      return undefined;\n    }\n\n    return data.gclid;\n  } catch (e) {\n    return undefined;\n  }\n}"
+                    }
+                ],
+                "fingerprint": "1780578216228",
+                "formatValue": {}
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "folderId": "11",
+                "name": "Google Ads Config",
+                "fingerprint": "1780635234552"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "folderId": "12",
+                "name": "GA4 Config",
+                "fingerprint": "1780635250991"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_ELEMENT",
+                "name": "Click Element"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_CLASSES",
+                "name": "Click Classes"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_ID",
+                "name": "Click ID"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_TARGET",
+                "name": "Click Target"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_URL",
+                "name": "Click URL"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "CLICK_TEXT",
+                "name": "Click Text"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "SCROLL_DEPTH_THRESHOLD",
+                "name": "Scroll Depth Threshold"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "SCROLL_DEPTH_UNITS",
+                "name": "Scroll Depth Units"
+            },
+            {
+                "accountId": "6351839120",
+                "containerId": "254444744",
+                "type": "SCROLL_DEPTH_DIRECTION",
+                "name": "Scroll Direction"
+            }
+        ],
+        "fingerprint": "1780635311459",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6351839120/containers/254444744/versions/5?apiLink=version"
+    }
+}
