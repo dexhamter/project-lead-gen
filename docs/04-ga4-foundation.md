@@ -69,14 +69,14 @@ All configuration is done in GA4 Admin. Navigate via the cog icon (bottom left) 
 
 **Settings:**
 
-| Toggle | State | Reason |
-|--------|-------|--------|
-| Page views | ✅ On | Required — tracks all pageviews automatically |
-| Scrolls | ✅ On | Useful micro-conversion signal (90% scroll depth) |
-| Outbound clicks | ✅ On | Tracks clicks leaving the site — useful for partner/referral analysis |
-| Site search | ❌ Off | No search functionality on this site — would never fire |
-| Video engagement | ✅ On | Future-proofing — no videos yet but harmless |
-| File downloads | ✅ On | Future-proofing — no downloads yet but harmless |
+| Toggle            | State  | Reason                                                                                                                     |
+| ----------------- | ------ | -------------------------------------------------------------------------------------------------------------------------- |
+| Page views        | ✅ On  | Required — tracks all pageviews automatically                                                                              |
+| Scrolls           | ✅ On  | Useful micro-conversion signal (90% scroll depth)                                                                          |
+| Outbound clicks   | ✅ On  | Tracks clicks leaving the site — useful for partner/referral analysis                                                      |
+| Site search       | ❌ Off | No search functionality on this site — would never fire                                                                    |
+| Video engagement  | ✅ On  | Future-proofing — no videos yet but harmless                                                                               |
+| File downloads    | ✅ On  | Future-proofing — no downloads yet but harmless                                                                            |
 | Form interactions | ❌ Off | **Critical:** would fire duplicate `form_submit` events alongside custom `generate_lead` pushes, polluting conversion data |
 
 > **Why disable Form Interactions specifically?** GA4's auto-detected `form_submit` fires on any form submit, regardless of success or failure. Your custom `generate_lead` push fires only on CF7's `wpcf7mailsent` event (confirmed successful submission). Leaving both on means every form submission generates two events — one with rich parameters, one bare. Disable the auto-detection and keep the custom push as the sole source.
@@ -91,12 +91,13 @@ All configuration is done in GA4 Admin. Navigate via the cog icon (bottom left) 
 
 Register all 4 dimensions now. Parameters with no data flowing yet are fine — GA4 will start capturing them from the first event that includes the parameter.
 
-| Dimension name | Event parameter | Scope | Description |
-|---------------|----------------|-------|-------------|
-| Form ID | `form_id` | Event | Identifies which form was submitted (`cf7-contact`, `hubspot-contact`, etc.) |
-| Service Type | `service_type` | Event | Service selected in dropdown (`Emergency Callout`, `Drain Unblocking`, etc.) |
-| Calendly Event Name | `calendly_event_name` | Event | Name of the Calendly event type booked |
-| Chat Provider | `chat_provider` | Event | Chat platform that triggered `chat_started` (e.g. `tawkto`) |
+| Dimension name      | Event parameter       | Scope | Description                                                                  |
+| ------------------- | --------------------- | ----- | ---------------------------------------------------------------------------- |
+| Form ID             | `form_id`             | Event | Identifies which form was submitted (`cf7-contact`, `hubspot-contact`, etc.) |
+| Service Type        | `service_type`        | Event | Service selected in dropdown (`Emergency Callout`, `Drain Unblocking`, etc.) |
+| Calendly Event Name | `calendly_event_name` | Event | Name of the Calendly event type booked                                       |
+| Chat Provider       | `chat_provider`       | Event | Chat platform that triggered `chat_started` (e.g. `tawkto`)                  |
+| Property Type       | `property_type`       | Event | Added in 1.7 - AJAX form tracking                                            |
 
 ---
 
@@ -106,9 +107,9 @@ Register all 4 dimensions now. Parameters with no data flowing yet are fine — 
 
 **Path:** Admin → Custom Definitions → Custom Metrics → Create custom metrics
 
-| Metric name | Event parameter | Scope | Unit | Data type |
-|------------|----------------|-------|------|-----------|
-| Lead Value | `lead_value` | Event | Currency | Revenue ✅ · Cost ❌ |
+| Metric name | Event parameter | Scope | Unit     | Data type            |
+| ----------- | --------------- | ----- | -------- | -------------------- |
+| Lead Value  | `lead_value`    | Event | Currency | Revenue ✅ · Cost ❌ |
 
 > **Why Revenue, not Cost?** GA4 requires a Currency metric to be classified as Revenue, Cost, or both for access restriction purposes. `lead_value` represents the estimated business value of a lead (income side) — not an advertising cost. Revenue-only is correct. This classification affects which GA4 user roles can see the metric in reports.
 
@@ -138,12 +139,12 @@ This is a two-step process: first define which IPs count as internal (in Data St
 
 **Path:** Admin → Data Streams → `http://lead-gen.local` → Configure tag settings → Define internal traffic → Create
 
-| Field | Value |
-|-------|-------|
-| Rule name | My IP |
-| `traffic_type` value | `internal` |
-| IP address match type | IP address equals |
-| IP address | [your current public IP from whatismyip.com] |
+| Field                 | Value                                        |
+| --------------------- | -------------------------------------------- |
+| Rule name             | My IP                                        |
+| `traffic_type` value  | `internal`                                   |
+| IP address match type | IP address equals                            |
+| IP address            | [your current public IP from whatismyip.com] |
 
 > **Dynamic IP note:** Most residential/mobile connections have dynamic IPs that change periodically. If GA4 Realtime starts showing your visits in reports, your IP has changed — update this rule with the new IP. This is a known limitation of IP-based filtering for local dev environments.
 
@@ -153,13 +154,13 @@ This is a two-step process: first define which IPs count as internal (in Data St
 
 **Path:** Admin → Data Filters → Internal Traffic → Edit
 
-| Field | Value |
-|-------|-------|
-| Filter name | Internal Traffic |
-| Filter operation | Exclude |
-| Parameter name | `traffic_type` |
-| Parameter value | `internal` |
-| Filter state | **Active** |
+| Field            | Value            |
+| ---------------- | ---------------- |
+| Filter name      | Internal Traffic |
+| Filter operation | Exclude          |
+| Parameter name   | `traffic_type`   |
+| Parameter value  | `internal`       |
+| Filter state     | **Active**       |
 
 > **Why Active, not Testing?** Testing mode tags matching events with a dimension but doesn't exclude them — it's for validating the rule before going live. Since all traffic to `http://lead-gen.local` is your own test traffic, there's no production data to protect. Go straight to Active.
 
@@ -201,13 +202,13 @@ No conversion events are marked in this subproject. Conversions are marked in GA
 
 ## Common Errors & Fixes
 
-| Error / Symptom | Root Cause | Fix |
-|----------------|------------|-----|
-| `form_submit` events appearing in DebugView | Form Interactions toggle still on | Admin → Data Streams → Enhanced Measurement → disable Form Interactions |
-| Internal traffic still showing in Realtime | IP rule not saved correctly, or IP has changed | Re-check Admin → Data Streams → Configure tag settings → Define internal traffic; update IP if changed |
-| Custom dimensions not appearing in GA4 reports | Up to 24 hours for new dimensions to propagate | Wait; use DebugView in the meantime to confirm parameters are arriving |
-| `lead_value` metric not visible in Explorations | Currency metrics with Revenue type require Editor role to view | Confirm you're logged in with an Editor or Owner role on the property |
-| Data retention still showing 2 months | Change not saved | Re-navigate to Admin → Data Settings → Data Retention and re-save |
+| Error / Symptom                                 | Root Cause                                                     | Fix                                                                                                    |
+| ----------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `form_submit` events appearing in DebugView     | Form Interactions toggle still on                              | Admin → Data Streams → Enhanced Measurement → disable Form Interactions                                |
+| Internal traffic still showing in Realtime      | IP rule not saved correctly, or IP has changed                 | Re-check Admin → Data Streams → Configure tag settings → Define internal traffic; update IP if changed |
+| Custom dimensions not appearing in GA4 reports  | Up to 24 hours for new dimensions to propagate                 | Wait; use DebugView in the meantime to confirm parameters are arriving                                 |
+| `lead_value` metric not visible in Explorations | Currency metrics with Revenue type require Editor role to view | Confirm you're logged in with an Editor or Owner role on the property                                  |
+| Data retention still showing 2 months           | Change not saved                                               | Re-navigate to Admin → Data Settings → Data Retention and re-save                                      |
 
 ## Reusable Assets
 
@@ -217,4 +218,4 @@ N/A — this subproject contains no code or exportable assets. All configuration
 
 - `project-lead-gen/docs/03-gtm-foundation.md` — GTM Foundation (upstream dependency)
 - `project-lead-gen/docs/05-google-ads-foundation.md` — Google Ads Foundation (next subproject)
-- `google-ads-measurement-library/docs/guides/03-data-processing/ga4/event-architecture.md` — GA4 event architecture extracted guide *(to be written)*
+- `google-ads-measurement-library/docs/guides/03-data-processing/ga4/event-architecture.md` — GA4 event architecture extracted guide _(to be written)_
